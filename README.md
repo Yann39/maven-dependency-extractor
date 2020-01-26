@@ -1,11 +1,45 @@
 # Maven multi-projects dependencies extractor
 
-Simple program that parse multiple Maven projects (POM files) to build a summary table of dependency versions.
+Simple Python program that parse multiple Maven projects (POM files) to build a summary table of dependency versions.
 
 ## Technologies
 
+- Python 3.4.4
+- Bootstrap 4.4.1
+
+## Prerequisites
+
+1. Modify `repositories_list variable` variable to include your repositories
+2. Modify `dependencies_versions_list` variable to include your artifact ids and versions
+3. Modify `authentication_data` variable to include your credentials to connect to your repositories
+
+POM files must be valid POM format and contains the namespace `http://maven.apache.org/POM/4.0.0`.
+
+You must have `<artifactId>` and `<version>` nodes under your `<project>` node.
+
+All dependencies versions should be inside a `<properties>` node.
+
+Example :
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <artifactId>my-project</artifactId>
+    <version>2.1.1</version>
+
+    <properties>
+        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
+        <zk.version>9.0.0</zk.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+    </properties>
+
+    ...
+
+</project>
+```
+
 ## Usage
 
+Simply run the `read_pom.py` file.
 
 ## Licence
 

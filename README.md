@@ -1,6 +1,6 @@
 # Maven multi-projects dependencies extractor
 
-Simple Python program that parse multiple Maven projects (POM files) to build a summary table of dependency versions.
+Simple Python program that parse multiple remote Maven projects (POM files) to build a summary table of dependency versions.
 
 ## Technologies
 
@@ -30,6 +30,7 @@ Example :
         <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
         <zk.version>9.0.0</zk.version>
         <commons-lang3.version>3.9</commons-lang3.version>
+        ...
     </properties>
 
     ...
@@ -40,6 +41,14 @@ Example :
 ## Usage
 
 Simply run the `read_pom.py` file.
+
+## Output
+
+It generates an HTML file in the project directory named `versions.html`.
+
+Here is an example output :
+
+![Login page screenshot](output.png "Generated HTML file")
 
 ## Licence
 

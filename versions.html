@@ -1,21 +1,79 @@
-
-        <!doctype html>
-        <html lang="en">
-            <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-                <title>My projects</title>
-            </head>
-            <body>
-                <table class="table table-sm">
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>My projects</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Maven project dependency versions</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered table-hover">
                     <thead>
-                        <tr><th scope="col">version</th><th scope="col">artifactId</th><th scope="col">spring.boot.version</th><th scope="col">zk.version</th></tr>
+                    <tr>
+                        <th scope="col">artifactId</th>
+                        <th scope="col">version</th>
+                        <th scope="col">zk.version</th>
+                        <th scope="col">spring.boot.version</th>
+                    </tr>
+
                     </thead>
                     <tbody>
-                        <tr><td>2.1.1</td><th scope="row">my-project1</th><td><span class="badge badge-secondary">None</span></td><td><span class="badge badge-success">9.0.0</span></td></tr><tr><td>1.4.0</td><th scope="row">my-project2</th><td><span class="badge badge-warning">2.2.1.RELEASE</span></td><td><span class="badge badge-warning">8.6.3</span></td></tr><tr><td>1.0.8</td><th scope="row">my-project3</th><td><span class="badge badge-warning">2.1.9.RELEASE</span></td><td><span class="badge badge-warning">8.6.3</span></td></tr><tr><td>1.2.1</td><th scope="row">my-project4</th><td><span class="badge badge-secondary">None</span></td><td><span class="badge badge-warning">8.6.2</span></td></tr><tr><td>1.0-SNAPSHOT</td><th scope="row">my-project5</th><td><span class="badge badge-secondary">None</span></td><td><span class="badge badge-danger">8.0.5</span></td></tr><tr><td>1.2.0</td><th scope="row">my-project6</th><td><span class="badge badge-secondary">None</span></td><td><span class="badge badge-warning">8.6.0.1</span></td></tr><tr><td>1.2.4</td><th scope="row">my-project7</th><td><span class="badge badge-secondary">None</span></td><td><span class="badge badge-warning">8.6.2</span></td></tr>
+                    <tr>
+                        <th scope="row">my-project1</th>
+                        <td>2.1.1</td>
+                        <td><span class="badge badge-success">9.0.0</span></td>
+                        <td><span class="badge badge-secondary">None</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">my-awesome-project</th>
+                        <td>1.4.0</td>
+                        <td><span class="badge badge-warning">8.6.3</span></td>
+                        <td><span class="badge badge-warning">2.2.1.RELEASE</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">my-project-2</th>
+                        <td>1.0.8</td>
+                        <td><span class="badge badge-warning">8.6.3</span></td>
+                        <td><span class="badge badge-warning">2.1.9.RELEASE</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">just-another-project</th>
+                        <td>1.2.1</td>
+                        <td><span class="badge badge-warning">8.6.2</span></td>
+                        <td><span class="badge badge-secondary">None</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">hate-this-project</th>
+                        <td>1.0-SNAPSHOT</td>
+                        <td><span class="badge badge-danger">8.0.5</span></td>
+                        <td><span class="badge badge-secondary">None</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">project-3</th>
+                        <td>1.2.0</td>
+                        <td><span class="badge badge-warning">8.6.0.1</span></td>
+                        <td><span class="badge badge-success">2.2.2.RELEASE</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">another-funny-projet</th>
+                        <td>1.2.4</td>
+                        <td><span class="badge badge-warning">8.6.2</span></td>
+                        <td><span class="badge badge-secondary">None</span></td>
+                    </tr>
+
                     </tbody>
                 </table>
-            </body>
-        </html>
-    
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -129,22 +129,22 @@ def generate_html_table(repositories_properties, dependencies_versions):
     Returns:
         A String representing the HTML table
     """
-    table_header = "<tr>"
+    table_header = "<tr>\n"
     for col in repositories_properties[0]:
-        table_header = table_header + '<th scope="col">{colName}</th>'.format(colName=col)
-    table_header = table_header + "</tr>"
+        table_header = table_header + '<th scope="col">{colName}</th>\n'.format(colName=col)
+    table_header = table_header + "</tr>\n"
 
     table_body = ""
     for line in repositories_properties:
-        table_body = table_body + "<tr>"
+        table_body = table_body + "<tr>\n"
         for col in line:
             if col == "artifactId":
-                table_body = table_body + '<th scope="row">{version}</th>'.format(version=line[col])
+                table_body = table_body + '<th scope="row">{version}</th>\n'.format(version=line[col])
             elif col == "version":
-                table_body = table_body + '<td>{version}</td>'.format(version=line[col])
+                table_body = table_body + '<td>{version}</td>\n'.format(version=line[col])
             else:
-                table_body = table_body + '<td><span class="badge badge-{color}">{version}</span></td>'.format(color=get_version_badge_color(dependencies_versions, (col, line[col])), version=line[col])
-        table_body = table_body + "</tr>"
+                table_body = table_body + '<td><span class="badge badge-{color}">{version}</span></td>\n'.format(color=get_version_badge_color(dependencies_versions, (col, line[col])), version=line[col])
+        table_body = table_body + "</tr>\n"
 
     html_template = """
         <!doctype html>
@@ -156,14 +156,27 @@ def generate_html_table(repositories_properties, dependencies_versions):
                 <title>My projects</title>
             </head>
             <body>
-                <table class="table table-sm">
-                    <thead>
-                        {tableHeader}
-                    </thead>
-                    <tbody>
-                        {tableBody}
-                    </tbody>
-                </table>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h1>Maven project dependency versions</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered table-hover">
+                                    <thead>
+                                        {tableHeader}
+                                    </thead>
+                                    <tbody>
+                                        {tableBody}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </body>
         </html>
     """.format(tableBody=table_body, tableHeader=table_header)
@@ -174,16 +187,19 @@ authentication_data = ("login", "password")
 
 # List of dependencies to consider, with their latest version and the minimum desired version
 dependencies_versions_list = {
-    "zk.version": ("9.0.0", "8.6.0"),
-    "spring.boot.version": ("2.2.2.RELEASE", "2.0.0.RELEASE"),
-    "commons-lang3.version": ("3.9", "3.5"),
+   "zk.version": ("9.0.0", "8.6.0"),
+   "spring.boot.version": ("2.2.2.RELEASE", "2.0.0.RELEASE"),
 }
 
 # List of repositories to check
 repositories_list = [
-    "https://github.com/api/v3/repos/my-org/project1/contents/pom.xml",
-    "https://github.com/api/v3/repos/my-org/project2/contents/pom.xml",
-    "https://github.com/api/v3/repos/my-other-org/project3/contents/pom.xml",
+   "https://github.com/api/v3/repos/my-org/my-project1/contents/pom.xml",
+   "https://github.com/api/v3/repos/my-org/my-awesome-project/contents/pom.xml",
+    "https://github.com/api/v3/repos/my-other-org/my-project-2/contents/pom.xml",
+    "https://github.com/api/v3/repos/my-other-org/just-another-project/contents/pom.xml",
+    "https://github.com/api/v3/repos/my-other-org/hate-this-project/contents/pom.xml",
+    "https://github.com/api/v3/repos/my-other-org/project-3/contents/pom.xml",
+    "https://github.com/api/v3/repos/another-org/another-funny-projet/contents/pom.xml",
 ]
 
 all_properties = get_versions_table(repositories_list, dependencies_versions_list.keys(), authentication_data)

@@ -37,7 +37,7 @@ Example :
 ## Usage
 
 In the `read_pom.py` file :
-1. Modify `repositories_list variable` variable to include your repositories
+1. Modify `repositories_list` variable to include your repositories
 2. Modify `dependencies_versions_list` variable to include your artifact ids and versions (for each dependency you can set latest version and a minimum required version) 
 3. Modify `authentication_data` variable to include your credentials to connect to your repositories
 

@@ -24,12 +24,13 @@ package = 'packaging'
 pip.main(['install', package])
 from packaging import version
 
+
 def get_version_badge_color(dependencies_versions, dependency):
     """
     Get badge color for the specified dependency
 
     Args:
-        dependencies_versions: A dictionary representing dependencies along with their versions (tuple of last version and minimum desired version)
+        dependencies_versions: A dictionary representing dependencies along with their versions (property name associating a tuple of last version and minimum desired version)
         dependency: A tuple representing the dependency (name and current version)
 
     Returns:
@@ -47,6 +48,7 @@ def get_version_badge_color(dependencies_versions, dependency):
     else:
         return "light"
 
+
 def get_property_tag_value(xml_root, namespace, tag_name):
     """
     Get the specified tag version value from the properties in the specified XML content
@@ -62,6 +64,7 @@ def get_property_tag_value(xml_root, namespace, tag_name):
     version_tag = xml_root.find("pom:properties", namespace).find("pom:" + tag_name, namespace)
     version_text = version_tag.text if version_tag is not None else "None"
     return version_text
+
 
 def get_tag_value(xml_root, namespace, tag_name):
     """
@@ -79,32 +82,34 @@ def get_tag_value(xml_root, namespace, tag_name):
     version_text = version_tag.text if version_tag is not None else "None"
     return version_text
 
+
 def get_repository_properties(xml_string, properties):
     """
-    Get properties name and value from the specified XML string
+    Get specified properties name and value from the specified XML string
 
     Args:
         xml_string: The XML string to search in
-        properties: The list of properties to search for
+        properties: The properties to search for (list of string)
 
     Returns:
-        A dictionary representing properties along with their values
+        A list of tuples (property name and value) representing repository properties
     """
     root = xml.etree.ElementTree.fromstring(xml_string)
     ns = {'pom': 'http://maven.apache.org/POM/4.0.0'}
-    values = {"artifactId": get_tag_value(root, ns, "artifactId"), "version": get_tag_value(root, ns, "version")}
+    values = [("artifactId", get_tag_value(root, ns, "artifactId")), ("version", get_tag_value(root, ns, "version"))]
     for prop in properties:
-        values[prop] = get_property_tag_value(root, ns, prop)
+        values.append((prop, get_property_tag_value(root, ns, prop)))
     return values
+
 
 def get_versions_table(repositories, properties, credentials):
     """
     Build a table of all properties for specified repositories
 
     Args:
-        repositories: The repositories to check
-        properties: The list of properties to search for
-        credentials: The credentials (login/password tuple) to connect to repositories
+        repositories: The repositories to check (list of string)
+        properties: The properties to search for (list of string)
+        credentials: The credentials to connect to repositories (login/password tuple)
 
     Returns:
         An array of dictionaries representing the properties names and values for each repository
@@ -118,32 +123,34 @@ def get_versions_table(repositories, properties, credentials):
             table.append(get_repository_properties(file_content, properties))
     return table
 
+
 def generate_html_table(repositories_properties, dependencies_versions):
     """
     Build an HTML table displaying all repositories properties
 
     Args:
         repositories_properties: The table of all properties for all repositories
-        dependencies_versions: A dictionary representing dependencies along with their versions (tuple of last version and minimum desired version)
+        dependencies_versions: A dictionary representing dependencies along with their versions (property name associating a tuple of last version and minimum desired version)
 
     Returns:
         A String representing the HTML table
     """
     table_header = "<tr>\n"
     for col in repositories_properties[0]:
-        table_header = table_header + '<th scope="col">{colName}</th>\n'.format(colName=col)
+        table_header = table_header + '<th scope="col">{colName}</th>\n'.format(colName=col[0])
     table_header = table_header + "</tr>\n"
 
     table_body = ""
     for line in repositories_properties:
         table_body = table_body + "<tr>\n"
         for col in line:
-            if col == "artifactId":
-                table_body = table_body + '<th scope="row">{version}</th>\n'.format(version=line[col])
-            elif col == "version":
-                table_body = table_body + '<td>{version}</td>\n'.format(version=line[col])
+            if col[0] == "artifactId":
+                table_body = table_body + '<th scope="row">{version}</th>\n'.format(version=col[1])
+            elif col[0] == "version":
+                table_body = table_body + '<td>{version}</td>\n'.format(version=col[1])
             else:
-                table_body = table_body + '<td><span class="badge badge-{color}">{version}</span></td>\n'.format(color=get_version_badge_color(dependencies_versions, (col, line[col])), version=line[col])
+                table_body = table_body + '<td><span class="badge badge-{color}">{version}</span></td>\n'.format(
+                    color=get_version_badge_color(dependencies_versions, col), version=col[1])
         table_body = table_body + "</tr>\n"
 
     html_template = """
@@ -155,7 +162,7 @@ def generate_html_table(repositories_properties, dependencies_versions):
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
                 <title>My projects</title>
             </head>
-            <body>
+            <body style="background-color:#ccc">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -165,7 +172,7 @@ def generate_html_table(repositories_properties, dependencies_versions):
                     <div class="row">
                         <div class="col">
                             <div class="table-responsive">
-                                <table class="table table-sm table-bordered table-hover">
+                                <table class="table table-bordered table-hover table-striped table-dark">
                                     <thead>
                                         {tableHeader}
                                     </thead>
@@ -182,19 +189,21 @@ def generate_html_table(repositories_properties, dependencies_versions):
     """.format(tableBody=table_body, tableHeader=table_header)
     return html_template
 
+
 # Credentials
 authentication_data = ("login", "password")
 
 # List of dependencies to consider, with their latest version and the minimum desired version
 dependencies_versions_list = {
-   "zk.version": ("9.0.0", "8.6.0"),
-   "spring.boot.version": ("2.2.2.RELEASE", "2.0.0.RELEASE"),
+    "java.version": ("12", "8"),
+    "zk.version": ("9.0.0", "8.6.0"),
+    "spring.boot.version": ("2.2.2.RELEASE", "2.0.0.RELEASE"),
 }
 
 # List of repositories to check
 repositories_list = [
-   "https://github.com/api/v3/repos/my-org/my-project1/contents/pom.xml",
-   "https://github.com/api/v3/repos/my-org/my-awesome-project/contents/pom.xml",
+    "https://github.com/api/v3/repos/my-org/my-project1/contents/pom.xml",
+    "https://github.com/api/v3/repos/my-org/my-awesome-project/contents/pom.xml",
     "https://github.com/api/v3/repos/my-other-org/my-project-2/contents/pom.xml",
     "https://github.com/api/v3/repos/my-other-org/just-another-project/contents/pom.xml",
     "https://github.com/api/v3/repos/my-other-org/hate-this-project/contents/pom.xml",
@@ -206,6 +215,6 @@ all_properties = get_versions_table(repositories_list, dependencies_versions_lis
 html_table = generate_html_table(all_properties, dependencies_versions_list)
 
 # write content in an HTML file
-file = open("versions.html", "w")
-file.write(html_table)
-file.close()
+output_file = open("versions.html", "w")
+output_file.write(html_table)
+output_file.close()

@@ -197,7 +197,7 @@ authentication_data = ("login", "password")
 dependencies_versions_list = {
     "java.version": ("12", "8"),
     "zk.version": ("9.0.0", "8.6.0"),
-    "spring.boot.version": ("2.2.2.RELEASE", "2.0.0.RELEASE"),
+    "spring.boot.version": ("2.2.2.RELEASE", "2.0.0.RELEASE")
 }
 
 # List of repositories to check

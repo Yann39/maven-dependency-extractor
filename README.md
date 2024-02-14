@@ -1,13 +1,46 @@
 # Maven multi-projects dependencies extractor
 
-Simple Python program that parse multiple remote Maven projects (POM files) to build a summary table of dependency versions.
+Simple **Python** program that parse **Maven** POM files
+to build a table of dependency versions.
 
-## Technologies
+![Static Badge](https://img.shields.io/badge/Version-1.0.5-2AAB92)
+![Static Badge](https://img.shields.io/badge/Last%20update-27%20Jan%202020-blue)
+![Static Badge](https://img.shields.io/badge/Python-3.4.4-yellow)
+![Static Badge](https://img.shields.io/badge/Bootstrap-3.4.4-purple)
 
-- Python 3.4.4
-- Bootstrap 4.4.1
+---
 
-## Prerequisites
+# Table of Contents
+
+* [About the Project](#about-the-project)
+* [Prerequisites](#prerequisites)
+* [Usage](#usage)
+* [Output](#output)
+* [License](#license)
+
+# About the Project
+
+<table>
+  <tr>
+    <td>
+        <img alt="Maven logo" src="logo-maven.svg" height="56"/>
+    </td>
+    <td>
+      <img alt="Python logo" src="logo-python.svg" height="64"/>
+    </td>
+    <td>
+      <img alt="Bootstrap logo" src="logo-bootstrap.svg" height="64"/>
+    </td>
+  </tr>
+</table>
+
+This project simply consists of a very basic **Python** program that parse multiple remote **Maven** projects (POM files)
+to extract versions of some dependencies and build a summary table.
+
+It is very basic and was just intended to help me visualize the main dependencies of my Maven projects in a single view,
+of course it would need a lot of refactoring and improvements to be a real production tool.
+
+# Prerequisites
 
 POM files must be valid POM format and contains the namespace `http://maven.apache.org/POM/4.0.0`.
 
@@ -34,7 +67,7 @@ Example :
 </project>
 ```
 
-## Usage
+# Usage
 
 In the `read_pom.py` file :
 1. Modify `repositories_list` variable to include your repositories
@@ -43,20 +76,20 @@ In the `read_pom.py` file :
 
 Then simply run the `read_pom.py` file.
 
-## Output
+# Output
 
 It generates an HTML file in the project directory named `versions.html`.
 
-For each dependencies, the version will be display as a badge with the right color :
-- green if dependency is up to date (latest version)
-- orange if dependency is not up to date but meets the minimum required version
-- red if dependency is out of date (does not even meets the minimum required version)
+For each dependency, the version will be display as a badge with the right color :
+- :green_circle: green if dependency is up-to-date (latest version)
+- :orange_circle: orange if dependency is not up-to-date but meets the minimum required version
+- :red_circle: red if dependency is out of date (does not even meet the minimum required version)
 
 Here is an example output :
 
 ![Login page screenshot](output.png "Generated HTML file")
 
-## Licence
+# License
 
 [General Public License (GPL) v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 

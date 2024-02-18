@@ -1,10 +1,10 @@
-# Maven multi-projects dependencies extractor
+# Maven dependency extractor
 
-Simple **Python** program that parse **Maven** POM files
-to build a table of dependency versions.
+Simple **Python** program that parses **Maven** POM files to build a table of dependency versions.
 
 ![Static Badge](https://img.shields.io/badge/Version-1.0.5-2AAB92)
 ![Static Badge](https://img.shields.io/badge/Last%20update-27%20Jan%202020-blue)
+
 ![Static Badge](https://img.shields.io/badge/Python-3.4.4-yellow)
 ![Static Badge](https://img.shields.io/badge/Bootstrap-3.4.4-purple)
 
@@ -34,7 +34,7 @@ to build a table of dependency versions.
   </tr>
 </table>
 
-This project simply consists of a very basic **Python** program that parse multiple remote **Maven** projects (POM files)
+This project simply consists of a very basic **Python** program that parses multiple remote **Maven** projects (POM files)
 to extract versions of some dependencies and build a summary table.
 
 It is very basic and was just intended to help me visualize the main dependencies of my Maven projects in a single view,

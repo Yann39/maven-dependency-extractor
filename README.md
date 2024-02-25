@@ -23,13 +23,13 @@ Simple **Python** program that parses **Maven** POM files to build a table of de
 <table>
   <tr>
     <td>
-        <img alt="Maven logo" src="logo-maven.svg" height="56"/>
+        <img alt="Maven logo" src="logo-maven.svg" height="48"/>
     </td>
     <td>
       <img alt="Python logo" src="logo-python.svg" height="64"/>
     </td>
     <td>
-      <img alt="Bootstrap logo" src="logo-bootstrap.svg" height="64"/>
+      <img alt="Bootstrap logo" src="logo-bootstrap.svg" height="62"/>
     </td>
   </tr>
 </table>

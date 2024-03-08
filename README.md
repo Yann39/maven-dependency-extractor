@@ -23,13 +23,13 @@ Simple **Python** program that parses **Maven** POM files to build a table of de
 <table>
   <tr>
     <td>
-        <img alt="Maven logo" src="logo-maven.svg" height="48"/>
+        <img alt="Maven logo" src="doc/logo-maven.svg" height="48"/>
     </td>
     <td>
-      <img alt="Python logo" src="logo-python.svg" height="64"/>
+      <img alt="Python logo" src="doc/logo-python.svg" height="64"/>
     </td>
     <td>
-      <img alt="Bootstrap logo" src="logo-bootstrap.svg" height="62"/>
+      <img alt="Bootstrap logo" src="doc/logo-bootstrap.svg" height="62"/>
     </td>
   </tr>
 </table>
@@ -87,7 +87,7 @@ For each dependency, the version will be display as a badge with the right color
 
 Here is an example output :
 
-![Login page screenshot](output.png "Generated HTML file")
+![Generated HTML file](doc/output.png "Generated HTML file")
 
 # License
 
